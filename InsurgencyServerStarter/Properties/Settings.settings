@@ -1,0 +1,56 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InsurgencyServerStarter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="sv_playlist" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;nwi/comp&lt;/string&gt;
+  &lt;string&gt;nwi/coop&lt;/string&gt;
+  &lt;string&gt;nwi/coop_elite&lt;/string&gt;
+  &lt;string&gt;nwi/coop_hardcore&lt;/string&gt;
+  &lt;string&gt;nwi/pvp_sustained&lt;/string&gt;
+  &lt;string&gt;nwi/pvp_tactical&lt;/string&gt;
+  &lt;string&gt;nwi/conquer&lt;/string&gt;
+  &lt;string&gt;nwi/training&lt;/string&gt;
+  &lt;string&gt;custom&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="mp_theater_override" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;theater_thearmory8pnocost_default&lt;/string&gt;
+  &lt;string&gt;doi&lt;/string&gt;
+  &lt;string&gt;default&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="mapcycle" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;mapcycle.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_all.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_ambush.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_attackdefend.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_checkpoint.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_comp.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_conquer.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_cooperative.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_firefight.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_flashpoint.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_hunt.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_infiltrate.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_objrespawn.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_occupy.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_practice.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_push.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_singlelife.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_skirmish.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_strike.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_survival.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_sustained_combat.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_tactical_operations.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_workshop.txt&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
