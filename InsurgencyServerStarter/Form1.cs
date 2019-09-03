@@ -17,30 +17,31 @@ namespace InsurgencyServerStarter
     {
         static string dirToSearch = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\cfg\").Replace("\\", "/");
         string serverCfgFile = File.ReadAllText(dirToSearch + "server.cfg");
+        string randomMap = "random";
 
         public Form1()
         {
             InitializeComponent();
 
-            try
-            {
-                comboBox1.Text = Properties.Settings.Default.sv_playlist[0];
-                comboBox2.Text = Properties.Settings.Default.mp_theater_override[0];
-                comboBox3.Text = Properties.Settings.Default.mapcycle[0];
-                comboBox4.Enabled = false;
-            }
-            catch (Exception)
-            {
-                comboBox1.Text = string.Empty;
-                comboBox2.Text = string.Empty;
-                comboBox3.Text = string.Empty;
-                comboBox4.Text = string.Empty;
-            }
-
             HandleComboBoxData handleComboBoxData = new HandleComboBoxData();
             handleComboBoxData.handleSvPlaylist(comboBox1);
             handleComboBoxData.handleMpTheaterOverride(comboBox2);
             handleComboBoxData.handleMapcycle(comboBox3);
+
+            try
+            {
+                comboBox1.SelectedIndex = 0;
+                comboBox2.SelectedIndex = 0;
+                comboBox3.SelectedIndex = 0;
+
+                comboBox4.Enabled = false;
+                if (!Properties.Settings.Default.mapcycle.Contains(string.Empty))
+                    comboBox4.Enabled = true;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,12 +66,24 @@ namespace InsurgencyServerStarter
             comboBox4.Enabled = true;
 
             string mapcycleDir = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\").Replace("\\", "/");
-            string[] selectedMapcycleDir = File.ReadAllText(mapcycleDir + comboBox3.Text).Split("\n".ToCharArray());
 
-            comboBox4.Items.Clear();
-            foreach (var item in selectedMapcycleDir)
+            try
             {
-                comboBox4.Items.Add(item);
+                string[] selectedMapcycleDir = File.ReadAllText(mapcycleDir + comboBox3.Text).Split("\n".ToCharArray());
+
+                comboBox4.Items.Clear();
+
+                comboBox4.Items.Add(randomMap);
+                foreach (var item in selectedMapcycleDir)
+                {
+                    comboBox4.Items.Add(item);
+                }
+
+                comboBox4.SelectedIndex = 0;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"{comboBox3.SelectedItem} file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -81,8 +94,13 @@ namespace InsurgencyServerStarter
             Properties.Settings.Default.mapcycle.Insert(0, comboBox3.Text);
             Properties.Settings.Default.Save();
 
+            var gameMap = comboBox4.SelectedItem;
+
+            if (gameMap == randomMap)
+                gameMap = comboBox4.Items[new Random().Next(0, comboBox4.Items.Count)];
+
             string srcdsDir = @"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\srcds.exe";
-            string startServerCommand = $"-console +map {comboBox4.SelectedItem} +maxplayers 32 -workshop +IP -condebug";
+            string startServerCommand = $"-console +map {gameMap} +maxplayers 32 -workshop +IP -condebug";
 
             var proc = new Process();
             proc.StartInfo.FileName = srcdsDir;
