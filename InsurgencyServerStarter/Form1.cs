@@ -109,7 +109,15 @@ namespace InsurgencyServerStarter
             if (isStarted)
             {
                 Process[] processes = Process.GetProcessesByName("srcds");
-                processes[0].Kill();
+                try
+                {
+                    processes[0].Kill();
+                }
+                catch (Exception)
+                {
+                    button1.Text = startServerText;
+                    isStarted = false;
+                }
                 button1.Text = startServerText;
                 isStarted = false;
             }
