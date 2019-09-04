@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace InsurgencyServerStarter
@@ -18,6 +12,9 @@ namespace InsurgencyServerStarter
         static string dirToSearch = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\cfg\").Replace("\\", "/");
         string serverCfgFile = File.ReadAllText(dirToSearch + "server.cfg");
         string randomMap = "random";
+        string startServerText = "Start Server";
+        string stopServerText = "Stop Server";
+        bool isStarted = false;
 
         public Form1()
         {
@@ -102,13 +99,26 @@ namespace InsurgencyServerStarter
             string srcdsDir = @"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\srcds.exe";
             string startServerCommand = $"-console +map {gameMap} +maxplayers 32 -workshop +IP -condebug";
 
-            var proc = new Process();
+            Process proc = new Process();
             proc.StartInfo.FileName = srcdsDir;
             proc.StartInfo.Arguments = startServerCommand;
-            proc.Start();
-            proc.WaitForExit();
-            var exitCode = proc.ExitCode;
-            proc.Close();
+
+            ThreadStart serverThreadStart = new ThreadStart(() => proc.Start());
+            Thread serverThread = new Thread(serverThreadStart);
+
+            if (isStarted)
+            {
+                Process[] processes = Process.GetProcessesByName("srcds");
+                processes[0].Kill();
+                button1.Text = startServerText;
+                isStarted = false;
+            }
+            else
+            {
+                serverThread.Start();
+                button1.Text = stopServerText;
+                isStarted = true;
+            }
         }
 
         private void ManipulateFiles( Regex rx, string textToReplace)
