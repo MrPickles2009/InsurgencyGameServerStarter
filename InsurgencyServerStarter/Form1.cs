@@ -15,6 +15,7 @@ namespace InsurgencyServerStarter
         string startServerText = "Start Server";
         string stopServerText = "Stop Server";
         bool isStarted = false;
+        bool hasExited = false;
 
         public Form1()
         {
@@ -126,6 +127,7 @@ namespace InsurgencyServerStarter
                 serverThread.Start();
                 button1.Text = stopServerText;
                 isStarted = true;
+                serverTimer();
             }
         }
 
@@ -134,6 +136,46 @@ namespace InsurgencyServerStarter
             string fileInfoReplaced = Regex.Replace(serverCfgFile, rx.ToString(), textToReplace);
             serverCfgFile = fileInfoReplaced;
             File.WriteAllText(dirToSearch + "server.cfg", fileInfoReplaced);
+        }
+
+        private void serverTimer()
+        {
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+
+            if (hasExited)
+                timer.Stop();
+        }
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("srcds");
+            try
+            {
+                hasExited = processes[0].HasExited;
+            }
+            catch (Exception)
+            {
+                WriteTextSafe(startServerText);
+                isStarted = false;
+                hasExited = true;
+            }
+        }
+
+        private delegate void SafeCallDelegate(string text);
+
+        private void WriteTextSafe(string text)
+        {
+            if (button1.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(WriteTextSafe);
+                Invoke(d, new object[] { text });
+            }
+            else
+            {
+                button1.Text = text;
+            }
         }
     }
 }
