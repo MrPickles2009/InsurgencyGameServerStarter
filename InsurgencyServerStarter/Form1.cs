@@ -9,11 +9,11 @@ namespace InsurgencyServerStarter
 {
     public partial class Form1 : Form
     {
-        static string dirToSearch = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\cfg\").Replace("\\", "/");
+        static readonly string dirToSearch = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\cfg\").Replace("\\", "/");
         string serverCfgFile = File.ReadAllText(dirToSearch + "server.cfg");
-        string randomMap = "random";
-        string startServerText = "Start Server";
-        string stopServerText = "Stop Server";
+        readonly string randomMap = "random";
+        readonly string startServerText = "Start Server";
+        readonly string stopServerText = "Stop Server";
         bool isStarted = false;
         bool hasExited = false;
 
@@ -42,21 +42,21 @@ namespace InsurgencyServerStarter
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Regex svPlaylistRx = new Regex(@"sv_playlist.\""(.{1,128})\""");
             string svPlaylist = $"sv_playlist \"{comboBox1.Text}\"";
             ManipulateFiles(svPlaylistRx, svPlaylist);
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             Regex mpTheaterOverrideRx = new Regex(@"mp_theater_override.\""(.{1,128})\""");
             string mpTheaterOverride = $"mp_theater_override \"{comboBox2.Text}\"";
             ManipulateFiles(mpTheaterOverrideRx, mpTheaterOverride);
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             Regex mapCycleFileRx = new Regex(@"mapcyclefile.\""(.{1,128})\""");
             string mapCycleFile = $"mapcyclefile \"{comboBox3.Text}\"";
@@ -85,7 +85,7 @@ namespace InsurgencyServerStarter
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.sv_playlist.Insert(0, comboBox1.Text);
             Properties.Settings.Default.mp_theater_override.Insert(0, comboBox2.Text);
@@ -94,11 +94,11 @@ namespace InsurgencyServerStarter
 
             var gameMap = comboBox4.SelectedItem;
 
-            if (gameMap == randomMap)
+            if ((string)gameMap == randomMap)
                 gameMap = comboBox4.Items[new Random().Next(0, comboBox4.Items.Count)];
 
             string srcdsDir = @"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\srcds.exe";
-            string startServerCommand = $"-console +map {gameMap} +maxplayers 32 -workshop +IP -condebug";
+            string startServerCommand = $"-console +map {gameMap} +maxplayers 32 +sv_pure 0 -workshop +IP -condebug";
 
             Process proc = new Process();
             proc.StartInfo.FileName = srcdsDir;
@@ -127,7 +127,7 @@ namespace InsurgencyServerStarter
                 serverThread.Start();
                 button1.Text = stopServerText;
                 isStarted = true;
-                serverTimer();
+                ServerTimer();
             }
         }
 
@@ -138,7 +138,7 @@ namespace InsurgencyServerStarter
             File.WriteAllText(dirToSearch + "server.cfg", fileInfoReplaced);
         }
 
-        private void serverTimer()
+        private void ServerTimer()
         {
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += Timer_Elapsed;

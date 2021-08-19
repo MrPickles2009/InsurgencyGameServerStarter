@@ -12,7 +12,7 @@ namespace InsurgencyServerStarter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -52,6 +52,7 @@ namespace InsurgencyServerStarter.Properties {
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>theater_thearmory8pnocost_default</string>
   <string>doi</string>
+  <string>theater_default_training</string>
   <string>default</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection mp_theater_override {
@@ -75,6 +76,7 @@ namespace InsurgencyServerStarter.Properties {
   <string>mapcycle_comp.txt</string>
   <string>mapcycle_conquer.txt</string>
   <string>mapcycle_cooperative.txt</string>
+  <string>mapcycle_doi.txt</string>
   <string>mapcycle_firefight.txt</string>
   <string>mapcycle_flashpoint.txt</string>
   <string>mapcycle_hunt.txt</string>
@@ -89,6 +91,7 @@ namespace InsurgencyServerStarter.Properties {
   <string>mapcycle_survival.txt</string>
   <string>mapcycle_sustained_combat.txt</string>
   <string>mapcycle_tactical_operations.txt</string>
+  <string>mapcycle_training.txt</string>
   <string>mapcycle_workshop.txt</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection mapcycle {

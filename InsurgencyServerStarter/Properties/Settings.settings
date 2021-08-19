@@ -21,6 +21,7 @@
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;theater_thearmory8pnocost_default&lt;/string&gt;
   &lt;string&gt;doi&lt;/string&gt;
+  &lt;string&gt;theater_default_training&lt;/string&gt;
   &lt;string&gt;default&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
@@ -35,6 +36,7 @@
   &lt;string&gt;mapcycle_comp.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_conquer.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_cooperative.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_doi.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_firefight.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_flashpoint.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_hunt.txt&lt;/string&gt;
@@ -49,6 +51,7 @@
   &lt;string&gt;mapcycle_survival.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_sustained_combat.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_tactical_operations.txt&lt;/string&gt;
+  &lt;string&gt;mapcycle_training.txt&lt;/string&gt;
   &lt;string&gt;mapcycle_workshop.txt&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
