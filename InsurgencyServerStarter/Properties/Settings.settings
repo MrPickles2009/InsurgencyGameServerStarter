@@ -19,8 +19,11 @@
     <Setting Name="mp_theater_override" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;35ab_expansion&lt;/string&gt;
+  &lt;string&gt;theater_35angrybots8p_default&lt;/string&gt;
+  &lt;string&gt;theater_35angrybots8p_medic_default&lt;/string&gt;
   &lt;string&gt;theater_thearmory8pnocost_default&lt;/string&gt;
-  &lt;string&gt;doi&lt;/string&gt;
+  &lt;string&gt;armory_pvp_default&lt;/string&gt;
   &lt;string&gt;theater_default_training&lt;/string&gt;
   &lt;string&gt;default&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
