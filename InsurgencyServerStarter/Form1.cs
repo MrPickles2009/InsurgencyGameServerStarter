@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -94,11 +95,21 @@ namespace InsurgencyServerStarter
 
             var gameMap = comboBox4.SelectedItem;
 
-            if ((string)gameMap == randomMap)
-                gameMap = comboBox4.Items[new Random().Next(0, comboBox4.Items.Count)];
+            if (gameMap.ToString() == "random")
+            {
+                List<string> gameMaps = new List<string>();
+                foreach (var map in comboBox4.Items)
+                {
+                    if (map.ToString() != "random")
+                    {
+                        gameMaps.Add(map.ToString().Replace("\r", ""));
+                    }
+                }
+                gameMap = gameMaps[new Random().Next(0, gameMaps.Count)];
+            }
 
             string srcdsDir = @"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\srcds.exe";
-            string startServerCommand = $"-console +map {gameMap} +maxplayers 32 +sv_pure 0 -workshop +IP -condebug";
+            string startServerCommand = $"-console +map {gameMap} -workshop +IP -condebug";
 
             Process proc = new Process();
             proc.StartInfo.FileName = srcdsDir;
