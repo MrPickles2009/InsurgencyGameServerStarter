@@ -11,6 +11,7 @@ namespace InsurgencyServerStarter
     public partial class Form1 : Form
     {
         static readonly string dirToSearch = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\cfg\").Replace("\\", "/");
+        static readonly string mapcycleDir = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\").Replace("\\", "/");
         string serverCfgFile = File.ReadAllText(dirToSearch + "server.cfg");
         readonly string randomMap = "random";
         readonly string startServerText = "Start Server";
@@ -23,9 +24,9 @@ namespace InsurgencyServerStarter
             InitializeComponent();
 
             HandleComboBoxData handleComboBoxData = new HandleComboBoxData();
-            handleComboBoxData.handleSvPlaylist(comboBox1);
-            handleComboBoxData.handleMpTheaterOverride(comboBox2);
-            handleComboBoxData.handleMapcycle(comboBox3);
+            handleComboBoxData.HandleSvPlaylist(comboBox1);
+            handleComboBoxData.HandleMpTheaterOverride(comboBox2);
+            handleComboBoxData.HandleMapcycle(mapcycleDir, comboBox3);
 
             try
             {
@@ -63,8 +64,6 @@ namespace InsurgencyServerStarter
             string mapCycleFile = $"mapcyclefile \"{comboBox3.Text}\"";
             ManipulateFiles(mapCycleFileRx, mapCycleFile);
             comboBox4.Enabled = true;
-
-            string mapcycleDir = (@"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\insurgency\").Replace("\\", "/");
 
             try
             {

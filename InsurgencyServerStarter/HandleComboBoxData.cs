@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,7 +10,7 @@ namespace InsurgencyServerStarter
 {
     class HandleComboBoxData
     {
-        public void handleSvPlaylist(ComboBox comboBox)
+        public void HandleSvPlaylist(ComboBox comboBox)
         {
             StringCollection s = new StringCollection();
 
@@ -44,7 +46,7 @@ namespace InsurgencyServerStarter
             }
         }
 
-        public void handleMpTheaterOverride(ComboBox comboBox)
+        public void HandleMpTheaterOverride(ComboBox comboBox)
         {
             StringCollection s = new StringCollection();
 
@@ -80,32 +82,22 @@ namespace InsurgencyServerStarter
             }
         }
 
-        public void handleMapcycle(ComboBox comboBox)
+        public void HandleMapcycle(string mapcycleDir, ComboBox comboBox)
         {
+            List<string> mapcycleFileDirs = Directory.GetFiles(mapcycleDir).Where(w => w.Contains("mapcycle_")).ToList();
             StringCollection s = new StringCollection();
+            StringCollection sc = new StringCollection();
 
             try
             {
-                for (int i = 0; i < Properties.Settings.Default.mapcycle.Count; i++)
+                foreach (var mapcycleFileDir in mapcycleFileDirs)
                 {
-                    bool Contains = comboBox.Items.Contains(Properties.Settings.Default.mapcycle[i]);
-                    if (!Contains)
+                    var mapcycleName = mapcycleFileDir.Substring(mapcycleFileDir.LastIndexOf("/") + 1);
+                    if (!comboBox.Items.Contains(mapcycleName))
                     {
-                        comboBox.Items.Add(Properties.Settings.Default.mapcycle[i]);
+                        comboBox.Items.Add(mapcycleName);
+                        s.Add(mapcycleName);
                     }
-                }
-
-                var uniques = Properties.Settings.Default.mapcycle.Cast<IEnumerable>();
-                var unique = uniques.Distinct();
-
-                foreach (var x in unique)
-                {
-                    s.Add(x.ToString());
-                }
-
-                if (s.Count > 23)
-                {
-                    s.RemoveAt(22);
                 }
 
                 Properties.Settings.Default.mapcycle = s;
