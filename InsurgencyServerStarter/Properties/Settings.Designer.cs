@@ -51,10 +51,12 @@ namespace InsurgencyServerStarter.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>35ab_expansion</string>
+  <string>sandstormsource_insgamer</string>
   <string>theater_35angrybots8p_default</string>
   <string>theater_35angrybots8p_medic_default</string>
   <string>theater_thearmory8pnocost_default</string>
   <string>armory_pvp_default</string>
+  <string>doi</string>
   <string>theater_default_training</string>
   <string>default</string>
 </ArrayOfString>")]

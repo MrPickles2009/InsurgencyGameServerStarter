@@ -109,7 +109,7 @@ namespace InsurgencyServerStarter
             }
 
             string srcdsDir = @"C:\SteamCMD\steamapps\common\Insurgency Dedicated Server\srcds.exe";
-            string startServerCommand = $"-console +map {gameMap} -workshop +IP -condebug";
+            string startServerCommand = $"-console +map {gameMap} -workshop +sv_pure 0 +IP -condebug";
 
             Process proc = new Process();
             proc.StartInfo.FileName = srcdsDir;
